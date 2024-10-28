@@ -18,6 +18,7 @@
 		2CB424212CC51352002ECED3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB424202CC51352002ECED3 /* HomeViewModel.swift */; };
 		2CB424232CC57073002ECED3 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB424222CC57073002ECED3 /* AddTransactionView.swift */; };
 		2CEE900F2CCBBE4E002CBE84 /* TransactionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE900E2CCBBE4E002CBE84 /* TransactionRowView.swift */; };
+		2CEE90212CCEAAB8002CBE84 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE90202CCEAAB8002CBE84 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2CB424202CC51352002ECED3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2CB424222CC57073002ECED3 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		2CEE900E2CCBBE4E002CBE84 /* TransactionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRowView.swift; sourceTree = "<group>"; };
+		2CEE90202CCEAAB8002CBE84 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				2C2C3A232CC81C13002D75C4 /* ExpenseTracker.entitlements */,
 				2C0A38762C74FDD100179B45 /* ExpenseTrackerApp.swift */,
 				2C0A38782C74FDD100179B45 /* ContentView.swift */,
+				2CEE90202CCEAAB8002CBE84 /* LoadingView.swift */,
 				2CEE900E2CCBBE4E002CBE84 /* TransactionRowView.swift */,
 				2C2C3A1F2CC6EF19002D75C4 /* CategoryDetailView.swift */,
 				2C2C3A1D2CC6DE09002D75C4 /* AddCategoryView.swift */,
@@ -163,6 +166,7 @@
 				2C2C3A1E2CC6DE09002D75C4 /* AddCategoryView.swift in Sources */,
 				2CB4241F2CC51259002ECED3 /* TransactionModel.swift in Sources */,
 				2CEE900F2CCBBE4E002CBE84 /* TransactionRowView.swift in Sources */,
+				2CEE90212CCEAAB8002CBE84 /* LoadingView.swift in Sources */,
 				2C0A38792C74FDD100179B45 /* ContentView.swift in Sources */,
 				2C0A38772C74FDD100179B45 /* ExpenseTrackerApp.swift in Sources */,
 				2CB424212CC51352002ECED3 /* HomeViewModel.swift in Sources */,

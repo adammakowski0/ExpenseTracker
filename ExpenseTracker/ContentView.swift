@@ -29,78 +29,97 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ScrollView{
-            LazyVStack(alignment: .center, spacing: 15, pinnedViews: [.sectionHeaders]) {
-                
-                circleMainView
-                
-                HStack{
-                    HStack {
-                        Image(systemName: "arrow.up.circle")
-                        Text("\(vm.totalIncomes.formatted(.currency(code: vm.currency)))")
-                            .lineLimit(1)
-                            .contentTransition(.numericText())
-                    }
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(.green)
-                    .frame(maxWidth: UIScreen.main.bounds.width / 2, alignment: .center)
+        ZStack {
+            if !vm.dataLoaded{
+                LoadingView()
+                    .zIndex(1)
+            }
+            headerView
+                .frame(maxHeight: .infinity, alignment: .top)
+                .zIndex(2)
+                .padding(.horizontal)
+            ScrollView {
+                LazyVStack(alignment: .center, spacing: 15, pinnedViews: [.sectionHeaders]) {
                     
-                    HStack {
-                        Image(systemName: "arrow.down.circle")
-                        Text("\(vm.totalExpenses.formatted(.currency(code: vm.currency)))")
-                            .lineLimit(1)
-                            .contentTransition(.numericText())
-                    }
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(.red)
-                    .frame(maxWidth: UIScreen.main.bounds.width / 2)
-                }
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.bottom, 20)
-                .padding(.horizontal, 10)
-                
-                categoriesPreview
-                
-                Section {
-                    if vm.transactionsList.isEmpty {
-                        Text("No transactions yet")
-                    }
-                    ForEach(filteredTransactions) { transaction in
-                        TransactionRowView(transaction: transaction)
-                    }
                     Divider()
                         .opacity(0.0)
-                        .padding(200)
-                } header: {
-                    VStack{
+                        .padding(.top, 80)
+                    circleMainView
+                    
+                    HStack{
                         HStack {
-                            Text(vm.selectedType.rawValue + "s")
-                                .font(.title)
-                                .fontWeight(.heavy)
-                                .padding(.bottom, 10)
-                                .animation(.none, value: vm.selectedType)
-                            Spacer()
-                            Button {
-                                addTransaction = true
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.title)
-                                    .tint(.primary)
-                                    .padding(.trailing)
-                            }
-                            
+                            Image(systemName: "arrow.up.circle")
+                            Text("\(vm.totalIncomes.formatted(.currency(code: vm.currency)))")
+                                .lineLimit(1)
+                                .contentTransition(.numericText())
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        SegmentedControl()
+                        .minimumScaleFactor(0.5)
+                        .foregroundStyle(.green)
+                        .frame(maxWidth: UIScreen.main.bounds.width / 2, alignment: .center)
+                        
+                        HStack {
+                            Image(systemName: "arrow.down.circle")
+                            Text("\(vm.totalExpenses.formatted(.currency(code: vm.currency)))")
+                                .lineLimit(1)
+                                .contentTransition(.numericText())
+                        }
+                        .minimumScaleFactor(0.5)
+                        .foregroundStyle(.red)
+                        .frame(maxWidth: UIScreen.main.bounds.width / 2)
                     }
-                    .background()
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 20)
+                    .padding(.horizontal, 10)
+                    
+                    categoriesPreview
+                    
+                    Section {
+                        if vm.transactionsList.isEmpty {
+                            VStack {
+                                Text("No transactions yet")
+                                    .padding(.vertical)
+                                Text("Add first with \(Image(systemName: "plus.circle.fill")) button")
+                            }
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        }
+                        ForEach(filteredTransactions) { transaction in
+                            TransactionRowView(transaction: transaction)
+                        }
+                        Divider()
+                            .opacity(0.0)
+                            .padding(200)
+                    } header: {
+                        VStack{
+                            HStack {
+                                Text(vm.selectedType.rawValue + "s")
+                                    .font(.title)
+                                    .fontWeight(.heavy)
+                                    .padding(.bottom, 10)
+                                    .animation(.none, value: vm.selectedType)
+                                Spacer()
+                                Button {
+                                    addTransaction = true
+                                } label: {
+                                    Image(systemName: "plus.circle.fill")
+                                        .font(.title)
+                                        .tint(.primary)
+                                        .padding(.trailing)
+                                }
+                                
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            SegmentedControl()
+                        }
+                        .background()
+                    }
                 }
             }
+            .scrollIndicators(.hidden)
+            .padding()
+            .ignoresSafeArea()
         }
-        .scrollIndicators(.hidden)
-        
-        .padding()
         .sheet(isPresented: $addTransaction) {
             AddTransactionView()
         }
@@ -147,6 +166,34 @@ struct ContentView: View {
 
 extension ContentView {
     
+    var headerView: some View {
+        HStack {
+            Button {
+                // TODO: Show menu
+            } label: {
+                Image(systemName: "ellipsis")
+                    .tint(.primary)
+                    .padding()
+                    .background(.black.gradient.opacity(0.15), in: .circle)
+                    .padding(.leading, 10)
+                    
+            }
+            Spacer()
+            Button {
+                // TODO: Profile view and settings
+            } label: {
+                Image(systemName: "person.fill")
+                    .tint(.primary)
+                    .padding(12)
+                    .background(.black.gradient.opacity(0.15), in: .circle)
+                    .padding(.trailing, 10)
+            }
+        }
+        .padding(.vertical, 5)
+        .frame(maxWidth: .infinity, alignment: .trailing)
+        .background(Color(uiColor: .secondarySystemBackground).opacity(0.95), in: .rect(cornerRadius: 10))
+    }
+    
     var circleMainView: some View {
         VStack {
             ZStack {
@@ -192,6 +239,11 @@ extension ContentView {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            if vm.transactionsCategories.isEmpty {
+                Text("Add first category with \(Image(systemName: "plus.circle.fill")) button")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+            }
             ScrollView(.horizontal){
                 HStack {
                     ForEach(vm.transactionsCategories) { category in

@@ -20,6 +20,7 @@ class HomeViewModel: ObservableObject {
     @Published var selectedType: TransactionType = .expense
     
     @Published var iCloudSignIn: Bool = false
+    @Published var dataLoaded: Bool = false
     
     init() {
         getiCloudStatus()
@@ -47,6 +48,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchCategories() {
+        dataLoaded = false
         transactionsCategories.removeAll()
         
         var categories: [TransactionCategory] = []
@@ -148,6 +150,7 @@ class HomeViewModel: ObservableObject {
                 totalExpenses += transaction.amount
             }
         }
+        dataLoaded = true
     }
     
     func addTransaction(title: String, amount: Double?, date: Date, category: TransactionCategory, selectedType: TransactionType) {
