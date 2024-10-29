@@ -76,7 +76,7 @@ struct CategoryDetailView: View {
                             )
                             .padding(10)
                         }
-
+                        
                         HStack {
                             Text("Total: \(category.amount.formatted(.currency(code: vm.currency)))")
                                 .font(.largeTitle)
@@ -93,7 +93,7 @@ struct CategoryDetailView: View {
                         )
                         .padding()
                     }
-
+                    
                     
                     Text("Transactions")
                     VStack{

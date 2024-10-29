@@ -34,16 +34,11 @@ struct ContentView: View {
                 LoadingView()
                     .zIndex(1)
             }
-            headerView
-                .frame(maxHeight: .infinity, alignment: .top)
-                .zIndex(2)
-                .padding(.horizontal)
             ScrollView {
                 LazyVStack(alignment: .center, spacing: 15, pinnedViews: [.sectionHeaders]) {
                     
-                    Divider()
-                        .opacity(0.0)
-                        .padding(.top, 80)
+                    headerView
+                    
                     circleMainView
                     
                     HStack{
@@ -118,7 +113,7 @@ struct ContentView: View {
             }
             .scrollIndicators(.hidden)
             .padding()
-            .ignoresSafeArea()
+            .ignoresSafeArea(edges: .bottom)
         }
         .sheet(isPresented: $addTransaction) {
             AddTransactionView()

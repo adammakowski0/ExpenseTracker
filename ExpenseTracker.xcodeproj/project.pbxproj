@@ -3,40 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C0A38772C74FDD100179B45 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A38762C74FDD100179B45 /* ExpenseTrackerApp.swift */; };
-		2C0A38792C74FDD100179B45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A38782C74FDD100179B45 /* ContentView.swift */; };
 		2C0A387B2C74FDD200179B45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0A387A2C74FDD200179B45 /* Assets.xcassets */; };
 		2C0A387E2C74FDD200179B45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0A387D2C74FDD200179B45 /* Preview Assets.xcassets */; };
-		2C2C3A1E2CC6DE09002D75C4 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2C3A1D2CC6DE09002D75C4 /* AddCategoryView.swift */; };
-		2C2C3A202CC6EF19002D75C4 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2C3A1F2CC6EF19002D75C4 /* CategoryDetailView.swift */; };
-		2C2C3A222CC7BD36002D75C4 /* CategorySymbolsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2C3A212CC7BD36002D75C4 /* CategorySymbolsEnum.swift */; };
-		2CB4241F2CC51259002ECED3 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB4241E2CC51259002ECED3 /* TransactionModel.swift */; };
-		2CB424212CC51352002ECED3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB424202CC51352002ECED3 /* HomeViewModel.swift */; };
-		2CB424232CC57073002ECED3 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB424222CC57073002ECED3 /* AddTransactionView.swift */; };
-		2CEE900F2CCBBE4E002CBE84 /* TransactionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE900E2CCBBE4E002CBE84 /* TransactionRowView.swift */; };
-		2CEE90212CCEAAB8002CBE84 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE90202CCEAAB8002CBE84 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C0A38732C74FDD100179B45 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0A38762C74FDD100179B45 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
-		2C0A38782C74FDD100179B45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2C0A387A2C74FDD200179B45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C0A387D2C74FDD200179B45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2C2C3A1D2CC6DE09002D75C4 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
-		2C2C3A1F2CC6EF19002D75C4 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
-		2C2C3A212CC7BD36002D75C4 /* CategorySymbolsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySymbolsEnum.swift; sourceTree = "<group>"; };
 		2C2C3A232CC81C13002D75C4 /* ExpenseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseTracker.entitlements; sourceTree = "<group>"; };
-		2CB4241E2CC51259002ECED3 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
-		2CB424202CC51352002ECED3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		2CB424222CC57073002ECED3 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
-		2CEE900E2CCBBE4E002CBE84 /* TransactionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRowView.swift; sourceTree = "<group>"; };
-		2CEE90202CCEAAB8002CBE84 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2CEE907E2CD0DE73002CBE84 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		2CEE907F2CD0DE79002CBE84 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		2CEE90802CD0DE81002CBE84 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+		2CEE90812CD0DEB8002CBE84 /* Enums */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Enums; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2C0A38702C74FDD100179B45 /* Frameworks */ = {
@@ -68,17 +57,12 @@
 		2C0A38752C74FDD100179B45 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2CEE90812CD0DEB8002CBE84 /* Enums */,
+				2CEE90802CD0DE81002CBE84 /* ViewModels */,
+				2CEE907F2CD0DE79002CBE84 /* Models */,
+				2CEE907E2CD0DE73002CBE84 /* Views */,
 				2C2C3A232CC81C13002D75C4 /* ExpenseTracker.entitlements */,
 				2C0A38762C74FDD100179B45 /* ExpenseTrackerApp.swift */,
-				2C0A38782C74FDD100179B45 /* ContentView.swift */,
-				2CEE90202CCEAAB8002CBE84 /* LoadingView.swift */,
-				2CEE900E2CCBBE4E002CBE84 /* TransactionRowView.swift */,
-				2C2C3A1F2CC6EF19002D75C4 /* CategoryDetailView.swift */,
-				2C2C3A1D2CC6DE09002D75C4 /* AddCategoryView.swift */,
-				2CB424222CC57073002ECED3 /* AddTransactionView.swift */,
-				2CB424202CC51352002ECED3 /* HomeViewModel.swift */,
-				2CB4241E2CC51259002ECED3 /* TransactionModel.swift */,
-				2C2C3A212CC7BD36002D75C4 /* CategorySymbolsEnum.swift */,
 				2C0A387A2C74FDD200179B45 /* Assets.xcassets */,
 				2C0A387C2C74FDD200179B45 /* Preview Content */,
 			);
@@ -107,6 +91,12 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2CEE907E2CD0DE73002CBE84 /* Views */,
+				2CEE907F2CD0DE79002CBE84 /* Models */,
+				2CEE90802CD0DE81002CBE84 /* ViewModels */,
+				2CEE90812CD0DEB8002CBE84 /* Enums */,
 			);
 			name = ExpenseTracker;
 			productName = ExpenseTracker;
@@ -163,16 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C2C3A1E2CC6DE09002D75C4 /* AddCategoryView.swift in Sources */,
-				2CB4241F2CC51259002ECED3 /* TransactionModel.swift in Sources */,
-				2CEE900F2CCBBE4E002CBE84 /* TransactionRowView.swift in Sources */,
-				2CEE90212CCEAAB8002CBE84 /* LoadingView.swift in Sources */,
-				2C0A38792C74FDD100179B45 /* ContentView.swift in Sources */,
 				2C0A38772C74FDD100179B45 /* ExpenseTrackerApp.swift in Sources */,
-				2CB424212CC51352002ECED3 /* HomeViewModel.swift in Sources */,
-				2CB424232CC57073002ECED3 /* AddTransactionView.swift in Sources */,
-				2C2C3A222CC7BD36002D75C4 /* CategorySymbolsEnum.swift in Sources */,
-				2C2C3A202CC6EF19002D75C4 /* CategoryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

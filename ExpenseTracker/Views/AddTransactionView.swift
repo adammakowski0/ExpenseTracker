@@ -66,7 +66,7 @@ struct AddTransactionView: View {
                         .padding(10)
                         .background(Color(uiColor: .secondarySystemBackground), in: .rect(cornerRadius: 10))
                         .frame(width: UIScreen.main.bounds.width/3.5)
-                        .keyboardType(.numberPad)
+                        .keyboardType(.decimalPad)
                     
                     Text(vm.currency)
                         .padding(.trailing)

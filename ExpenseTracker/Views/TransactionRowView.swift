@@ -62,6 +62,6 @@ struct TransactionRowView: View {
 }
 
 #Preview {
-    TransactionRowView(transaction: TransactionModel(name: "Transaction", amount: 100, date: .now, category: TransactionCategory(name: "General", amount: 150, incomes: 200, expenses: 50, colorHex: Color.red.hex!, symbolRawValue: CategorySymbolsEnum.internet.rawValue, record: CKRecord(recordType: "Transactions")), type: .income, record: CKRecord(recordType: "b")))
+    TransactionRowView(transaction: TransactionModel(name: "Test", amount: 100, date: Date(), category: TransactionCategory(name: "General", amount: 150, incomes: 200, expenses: 50, colorHex: "#000000", symbolRawValue: "cart.fill", record: CKRecord(recordType: "Categories")), type: .expense, record: CKRecord(recordType: "Transactions")))
         .environmentObject(HomeViewModel())
 }
