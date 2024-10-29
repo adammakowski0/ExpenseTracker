@@ -208,11 +208,8 @@ extension ContentView {
                     .minimumScaleFactor(0.3)
                     .lineLimit(1)
             }
-            .padding(.top, 35)
-            .padding(.bottom, 10)
         }
-        .frame(width: UIScreen.main.bounds.width, height: 300, alignment: .top)
-        .padding(10)
+        .padding()
     }
     
     var categoriesPreview: some View {
