@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var addTransaction: Bool = false
     @State var addCategory: Bool = false
     @State var selectedCategory: TransactionCategory? = nil
+    @State var showMenu: Bool = false
     
     @Namespace var namespace
     
@@ -34,6 +35,18 @@ struct ContentView: View {
                 LoadingView()
                     .zIndex(1)
             }
+            if showMenu {
+                //TODO: Make navigation buttons in menu view and add dismiss button
+                MenuView()
+                    .zIndex(2)
+                    .transition(.move(edge: .leading))
+                    .onTapGesture {
+                        withAnimation {
+                            showMenu = false
+                        }
+                    }
+            }
+            
             ScrollView {
                 LazyVStack(alignment: .center, spacing: 15, pinnedViews: [.sectionHeaders]) {
                     
@@ -165,6 +178,9 @@ extension ContentView {
         HStack {
             Button {
                 // TODO: Show menu
+                withAnimation {
+                    showMenu.toggle()
+                }
             } label: {
                 Image(systemName: "ellipsis")
                     .tint(.primary)
