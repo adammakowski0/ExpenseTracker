@@ -35,7 +35,7 @@ struct ContentView: View {
             if !vm.dataLoaded{
                 LoadingView()
             }
-
+            
             TabView(selection: $selectedView) {
                 VStack(spacing: 0) {
                     headerView(title: "Home")
@@ -84,7 +84,6 @@ extension ContentView {
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground), in: .circle)
                     .padding(.leading, 10)
-                
             }
             Text(title)
                 .font(.title2)
@@ -122,74 +121,78 @@ extension ContentView {
             ScrollView(.horizontal){
                 HStack {
                     ForEach(vm.transactionsCategories) { category in
-                        VStack {
-                            HStack {
-                                Image(systemName: category.symbol.rawValue)
-                                Spacer()
-                                Text(category.name)
-                                    .minimumScaleFactor(0.5)
-                                    .lineLimit(1)
-                                Spacer()
-                            }
-                            .font(.headline)
-                            .fontWeight(.heavy)
-                            .foregroundStyle(category.color)
-                            .padding(.top, 10)
-                            .padding(.bottom, 4)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            HStack {
-                                Image(systemName: "arrow.up.circle")
-                                Text("\(category.incomes.formatted(.currency(code: vm.currency)))")
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.5)
-                                    .contentTransition(.numericText())
-                            }
-                            .font(.footnote)
-                            .foregroundStyle(.green)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            HStack {
-                                Image(systemName: "arrow.down.circle")
-                                Text("\(category.expenses.formatted(.currency(code: vm.currency)))")
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.5)
-                                    .contentTransition(.numericText())
-                            }
-                            .font(.footnote)
-                            .foregroundStyle(.red)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            HStack {
-                                Image(systemName: "plusminus.circle")
-                                    .font(.footnote)
-                                Text("Total: \(category.amount.formatted(.currency(code: vm.currency)))")
-                                    .font(.subheadline)
-                                    .bold()
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.5)
-                                    .contentTransition(.numericText())
-                            }
-                        }
-                        .padding([.bottom, .horizontal])
-                        .frame(maxWidth: 180, alignment: .leading)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(uiColor: .secondarySystemBackground))
-                                .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 0)
-                        )
-                        .onTapGesture {
-                            selectedCategory = category
-                        }
-                        .contextMenu {
-                            Button {
-                                withAnimation {
-                                    vm.deleteCategory(category: category)
-                                }
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                        }
+                        categoryPreviewView(category: category)
                     }
                 }
+            }
+        }
+    }
+    
+    private func categoryPreviewView(category: TransactionCategory) -> some View {
+        VStack {
+            HStack {
+                Image(systemName: category.symbol.rawValue)
+                Spacer()
+                Text(category.name)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                Spacer()
+            }
+            .font(.headline)
+            .fontWeight(.heavy)
+            .foregroundStyle(category.color)
+            .padding(.top, 10)
+            .padding(.bottom, 4)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            HStack {
+                Image(systemName: "arrow.up.circle")
+                Text("\(category.incomes.formatted(.currency(code: vm.currency)))")
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .contentTransition(.numericText())
+            }
+            .font(.footnote)
+            .foregroundStyle(.green)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            HStack {
+                Image(systemName: "arrow.down.circle")
+                Text("\(category.expenses.formatted(.currency(code: vm.currency)))")
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .contentTransition(.numericText())
+            }
+            .font(.footnote)
+            .foregroundStyle(.red)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            HStack {
+                Image(systemName: "plusminus.circle")
+                    .font(.footnote)
+                Text("Total: \(category.amount.formatted(.currency(code: vm.currency)))")
+                    .font(.subheadline)
+                    .bold()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .contentTransition(.numericText())
+            }
+        }
+        .padding([.bottom, .horizontal])
+        .frame(maxWidth: 180, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(uiColor: .secondarySystemBackground))
+                .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 0)
+        )
+        .onTapGesture {
+            selectedCategory = category
+        }
+        .contextMenu {
+            Button {
+                withAnimation {
+                    vm.deleteCategory(category: category)
+                }
+            } label: {
+                Label("Delete", systemImage: "trash")
             }
         }
     }
