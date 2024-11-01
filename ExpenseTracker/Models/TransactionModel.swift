@@ -30,7 +30,11 @@ struct TransactionModel: Identifiable {
     }
 }
 
-struct TransactionCategory: Identifiable, Hashable {
+struct TransactionCategory: Identifiable, Equatable {
+    static func == (lhs: TransactionCategory, rhs: TransactionCategory) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: UUID
     var name: String
     var amount: Double
@@ -74,6 +78,14 @@ enum TransactionType: String, CaseIterable {
     case expense = "Expense"
     case income = "Income"
 }
+
+
+//TODO: 
+//struct ChartData: Identifiable {
+//    var id: UUID = UUID()
+//    var value: Double?
+//    var date: Date
+//}
 
 
 extension Color {

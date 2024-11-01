@@ -28,7 +28,7 @@ struct AddTransactionView: View {
                 } label: {
                     Text("Cancel")
                         .font(.headline)
-                        .fontWeight(.light)
+                        .fontWeight(.regular)
                         .padding(.leading, 20)
                 }
                 Spacer()

@@ -27,12 +27,11 @@ struct AddCategoryView: View {
                 } label: {
                     Text("Cancel")
                         .font(.headline)
-                        .fontWeight(.light)
+                        .fontWeight(.regular)
                         .padding(.leading, 20)
                 }
                 Spacer()
                 Text("Add category")
-                
                     .font(.title3)
                     .fontWeight(.heavy)
                 Spacer()

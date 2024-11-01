@@ -241,8 +241,6 @@ class HomeViewModel: ObservableObject {
     
     func saveRecord(record: CKRecord) {
         CKContainer(identifier: "iCloud.adammakowski.ExpenseTracker").privateCloudDatabase.save(record) { returnedRecord, error in
-//            print(returnedRecord ?? "")
-//            print(error ?? "")
         }
     }
     
@@ -253,20 +251,22 @@ class HomeViewModel: ObservableObject {
         
         CKContainer(identifier: "iCloud.adammakowski.ExpenseTracker").privateCloudDatabase.delete(withRecordID: transaction.record.recordID) { [weak self] returnedRecord, error in
             DispatchQueue.main.async {
-                if transaction.type == .income {
-                    self?.totalAmount -= transaction.amount
-                    self?.transactionsCategories[categoryIndex].amount -= transaction.amount
-                    self?.totalIncomes -= transaction.amount
-                    self?.transactionsCategories[categoryIndex].incomes -= transaction.amount
-                }
-                else if transaction.type == .expense {
-                    self?.totalAmount += transaction.amount
-                    self?.transactionsCategories[categoryIndex].amount += transaction.amount
-                    self?.totalExpenses -= transaction.amount
-                    self?.transactionsCategories[categoryIndex].expenses -= transaction.amount
-                }
+                withAnimation {
+                    if transaction.type == .income {
+                        self?.totalAmount -= transaction.amount
+                        self?.transactionsCategories[categoryIndex].amount -= transaction.amount
+                        self?.totalIncomes -= transaction.amount
+                        self?.transactionsCategories[categoryIndex].incomes -= transaction.amount
+                    }
+                    else if transaction.type == .expense {
+                        self?.totalAmount += transaction.amount
+                        self?.transactionsCategories[categoryIndex].amount += transaction.amount
+                        self?.totalExpenses -= transaction.amount
+                        self?.transactionsCategories[categoryIndex].expenses -= transaction.amount
+                    }
 
-                self?.transactionsList.remove(at: transactionIndex)
+                    self?.transactionsList.remove(at: transactionIndex)
+                }
             }
             guard let transactionRecord = self?.transactionsList[transactionIndex].record else { return }
             self?.saveRecord(record: transactionRecord)
@@ -279,20 +279,22 @@ class HomeViewModel: ObservableObject {
         
         CKContainer(identifier: "iCloud.adammakowski.ExpenseTracker").privateCloudDatabase.delete(withRecordID: category.record.recordID) { [weak self] returnedRecord, error in
             DispatchQueue.main.async {
-                self?.totalAmount -= category.amount
-                self?.totalIncomes -= category.incomes
-                self?.totalExpenses -= category.expenses
-                
-                for transaction in self?.transactionsList ?? [] {
-                    if transaction.category.id == category.id {
-                        CKContainer(identifier: "iCloud.adammakowski.ExpenseTracker").privateCloudDatabase.delete(withRecordID: transaction.record.recordID) { [weak self] returnedRecord, error in
-                            DispatchQueue.main.async {
-                                self?.transactionsList.removeAll(where: { $0.id == transaction.id })
+                withAnimation {
+                    self?.totalAmount -= category.amount
+                    self?.totalIncomes -= category.incomes
+                    self?.totalExpenses -= category.expenses
+                    
+                    for transaction in self?.transactionsList ?? [] {
+                        if transaction.category.id == category.id {
+                            CKContainer(identifier: "iCloud.adammakowski.ExpenseTracker").privateCloudDatabase.delete(withRecordID: transaction.record.recordID) { [weak self] returnedRecord, error in
+                                DispatchQueue.main.async {
+                                    self?.transactionsList.removeAll(where: { $0.id == transaction.id })
+                                }
                             }
                         }
                     }
+                    self?.transactionsCategories.remove(at: categoryIndex)
                 }
-                self?.transactionsCategories.remove(at: categoryIndex)
             }
         }
     }
