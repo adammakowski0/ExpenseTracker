@@ -236,6 +236,7 @@ class HomeViewModel: ObservableObject {
         updatedRecord["expenses"] = category.expenses
         updatedRecord["color"] = category.color.hex
         updatedRecord["symbol"] = category.symbol.rawValue
+        print("updateCategory")
         saveRecord(record: updatedRecord)
     }
     
@@ -248,6 +249,7 @@ class HomeViewModel: ObservableObject {
         
         guard let transactionIndex = transactionsList.firstIndex(where: {$0.id == transaction.id}) else { return }
         guard let categoryIndex = transactionsCategories.firstIndex(where: {$0.id == transaction.category.id}) else { return }
+        let transactionRecord = self.transactionsList[transactionIndex].record
         
         CKContainer(identifier: "iCloud.adammakowski.ExpenseTracker").privateCloudDatabase.delete(withRecordID: transaction.record.recordID) { [weak self] returnedRecord, error in
             DispatchQueue.main.async {
@@ -257,19 +259,20 @@ class HomeViewModel: ObservableObject {
                         self?.transactionsCategories[categoryIndex].amount -= transaction.amount
                         self?.totalIncomes -= transaction.amount
                         self?.transactionsCategories[categoryIndex].incomes -= transaction.amount
+                        guard let updatedCategory = self?.transactionsCategories[categoryIndex] else { return }
+                        self?.updateCategory(category: updatedCategory)
                     }
                     else if transaction.type == .expense {
                         self?.totalAmount += transaction.amount
                         self?.transactionsCategories[categoryIndex].amount += transaction.amount
                         self?.totalExpenses -= transaction.amount
                         self?.transactionsCategories[categoryIndex].expenses -= transaction.amount
+                        guard let updatedCategory = self?.transactionsCategories[categoryIndex] else { return }
+                        self?.updateCategory(category: updatedCategory)
                     }
-
                     self?.transactionsList.remove(at: transactionIndex)
                 }
             }
-            guard let transactionRecord = self?.transactionsList[transactionIndex].record else { return }
-            self?.saveRecord(record: transactionRecord)
         }
     }
     

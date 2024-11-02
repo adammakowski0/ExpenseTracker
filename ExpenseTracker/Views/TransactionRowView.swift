@@ -61,6 +61,20 @@ struct TransactionRowView: View {
     }
 }
 
+extension AnyTransition {
+    static func transactionListTransition(selectedType: TransactionType) -> AnyTransition {
+        if selectedType == .expense {
+            return AnyTransition.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
+        }
+        if selectedType == .income {
+            return AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
+        }
+        else {
+            return AnyTransition.slide
+        }
+    }
+}
+
 #Preview {
     TransactionRowView(transaction: TransactionModel(name: "Test", amount: 100, date: Date(), category: TransactionCategory(name: "General", amount: 150, incomes: 200, expenses: 50, colorHex: "#000000", symbolRawValue: "cart.fill", record: CKRecord(recordType: "Categories")), type: .expense, record: CKRecord(recordType: "Transactions")))
         .environmentObject(HomeViewModel())

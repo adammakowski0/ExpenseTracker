@@ -19,6 +19,10 @@ struct ContentView: View {
     
     @Namespace var namespace
     
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
+    
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -41,17 +45,17 @@ struct ContentView: View {
                     headerView(title: "Home")
                     mainScrollView
                 }
-                .toolbar(.hidden, for: .tabBar)
+//                .toolbar(.hidden, for: .tabBar)
                 .tag(0)
                 
                 VStack{
                     headerView(title: "Statistics")
                     StaticticsView()
                 }
-                .toolbar(.hidden, for: .tabBar)
+//                .toolbar(.hidden, for: .tabBar)
                 .tag(1)
             }
-            .toolbar(.hidden, for: .tabBar)
+//            .toolbar(.hidden, for: .tabBar)
             
             //TODO: Make navigation buttons in menu view and add dismiss button
             MenuView(showMenu: $showMenu, selectedView: $selectedView)
@@ -224,16 +228,18 @@ extension ContentView {
             .foregroundStyle(.green)
             .frame(maxWidth: UIScreen.main.bounds.width / 2 - 35)
             
-            HStack(spacing: 0){
+            // Incomes bar chart
+            HStack(spacing: 0) {
                 ForEach(vm.transactionsCategories) { category in
                     Rectangle()
                         .fill(category.color)
-                        .frame(width: vm.totalIncomes > 0 && category.incomes > 0 ? category.incomes/vm.totalIncomes * 165 : 0)
+                        .frame(width: vm.totalIncomes > 0 && category.incomes > 0 ? category.incomes/vm.totalIncomes * 150 : 0)
                 }
             }
-            .frame(height: 20)
+            .frame(height: 18)
             .clipShape(RoundedRectangle(cornerRadius: 7))
-            .padding()
+            .padding(.vertical, 10)
+            .padding(.horizontal, 5)
         }
         .frame(maxWidth: UIScreen.main.bounds.width / 2)
     }
@@ -250,17 +256,19 @@ extension ContentView {
             .foregroundStyle(.red)
             .frame(maxWidth: UIScreen.main.bounds.width / 2 - 35)
             
-            HStack(spacing: 0){
+            // Expenses bar chart
+            HStack(spacing: 0) {
                 
                 ForEach(vm.transactionsCategories) { category in
                     Rectangle()
                         .fill(category.color)
-                        .frame(width: vm.totalExpenses > 0 && category.expenses > 0 ? category.expenses/vm.totalExpenses * 165 : 0)
+                        .frame(width: vm.totalExpenses > 0 && category.expenses > 0 ? category.expenses/vm.totalExpenses * 150 : 0)
                 }
             }
-            .frame(height: 20)
+            .frame(height: 18)
             .clipShape(RoundedRectangle(cornerRadius: 7))
-            .padding()
+            .padding(.vertical, 10)
+            .padding(.horizontal, 5)
         }
         .frame(maxWidth: UIScreen.main.bounds.width / 2)
     }
@@ -349,7 +357,7 @@ extension ContentView {
                     }
                     .contentShape(.capsule)
                     .onTapGesture {
-                        withAnimation(.snappy) {
+                        withAnimation {
                             vm.selectedType = type
                         }
                     }
@@ -362,21 +370,6 @@ extension ContentView {
         )
     }
 }
-
-extension AnyTransition {
-    static func transactionListTransition(selectedType: TransactionType) -> AnyTransition {
-        if selectedType == .income {
-            return AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing))
-        }
-        else if selectedType == .expense {
-            return AnyTransition.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading))
-        }
-        else {
-            return AnyTransition.identity
-        }
-    }
-}
-
 
 struct CircleView: View {
     

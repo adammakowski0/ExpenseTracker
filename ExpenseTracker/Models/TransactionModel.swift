@@ -80,12 +80,11 @@ enum TransactionType: String, CaseIterable {
 }
 
 
-//TODO: 
-//struct ChartData: Identifiable {
-//    var id: UUID = UUID()
-//    var value: Double?
-//    var date: Date
-//}
+struct ChartData: Identifiable {
+    var id: UUID = UUID()
+    var value: Double
+    var date: Date
+}
 
 
 extension Color {
